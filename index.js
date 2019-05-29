@@ -54,7 +54,7 @@ app.get("/notes", (request, response) => {
 	if(error){
 					return response.tatus(500).send(error);
 	}
-	response.}send(result);
+	response.send(result);
 		});
 	}); 
 });
