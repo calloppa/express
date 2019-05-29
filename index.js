@@ -13,7 +13,7 @@ app.get("/hi",(request,response) => {
 	response.send("Hello world!");
 });
 
-const CONNECTION URL = "lab11-aq2wbts16.now.sh";
+const CONNECTION URL = "https://onlinecurl.com/";
 const DATABASE_ NAME = "TiffanyLab10" ;
 //save a new note
 app.post("/notes", (request, response) => {
