@@ -13,7 +13,7 @@ app.get("/hi",(request,response) => {
 	response.send("Hello world!");
 });
 
-const CONNECTION URL = "https://onlinecurl.com/";
+const CONNECTION URL = "mongodb+srv://calloppa:<password>@tiffanylab10-awd1d.mongodb.net/test?retryWrites=true";
 const DATABASE_ NAME = "TiffanyLab10" ;
 //save a new note
 app.post("/notes", (request, response) => {
