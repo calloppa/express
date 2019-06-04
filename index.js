@@ -36,8 +36,7 @@ app.post("/notes", (request, response) => {
 });  
 //we will use the following template for notes: '{"name":"", " body":""}'
 
-//this last line is required by zeit since we are stateless
-module.exports = app;
+
 
 //get all notes
 app.get("/notes", (request, response) => {
@@ -71,22 +70,22 @@ app.put('/notes/:id',(request,response) => {
 	collection = database.collection("Notes");
 
 	collection.find({}).toArray((error, result) => {
-	if(error){
-		response.send(result[numberID]._id);
-		return response.status(500).send(error);
-	}
+		if(error){
+			response.send(result[numberID]._id);
+			return response.status(500).send(error);
+		}
 
-	//parse the request into a number
-	var numberID = parseInt (request.params.id); 
+		//parse the request into a number
+		var numberID = parseInt (request.params.id); 
 
-	//only return a response if it is valid
-	if (numberID >= result.length)
-		response.send("Not enough elements in database")
-	else
-	{
-		collection.update({"_id":result[numberID]._id},{$set:{"body":request.body.body}})
-		response.send(result[numberID]);
-	}
+		//only return a response if it is valid
+		if (numberID >= result.length)
+			response.send("Not enough elements in database")
+		else
+		{
+			collection.update({"_id":result[numberID]._id},{$set:{"body":request.body.body}})
+			response.send(result[numberID]);
+		}
 		
 		});
 	});
@@ -96,34 +95,43 @@ app.put('/notes/:id',(request,response) => {
 app.delete('/notes/:id',(request,response) => {
 	
 	MongoClient.connect(CONNECTION_URL, { useNewUrlParser:true},(error,client) => {
-	if(error) {
-		response.send(error);
-		throw error;
-	}
-	database = client.db(DATABASE_NAME);
-	collection = database.collection("Notes");
-
-	collection.find({}).toArray((error, result) => {
-	if(error){
-		response.send(result[numberID]._id);
-		return response.status(500).send(error);
-	}
-
-	//parse the request into a number
-	var numberID = parseInt (request.params.id); 
-
-	//only return a response if it is valid
-	if (numberID >= result.length)
-		response.send("Not enough elements in database")
-	else
-	{
-		collection.remove({"_id":result[numberID]._id},(err,result) =>{
-			if(err){
-				response.send(result[numberID]);
-			throw err;
-			}		
-			response.send('user deleted');		
-			});
+		if(error) 
+		{
+			response.send(error);
+			throw error;
 		}
+		database = client.db(DATABASE_NAME);
+		collection = database.collection("Notes");
+
+		collection.find({}).toArray((error, result) => 
+		{
+			if(error)
+			{
+				response.send(result[numberID]._id);
+				return response.status(500).send(error);
+			}
+
+			//parse the request into a number
+			var numberID = parseInt (request.params.id); 
+
+			//only return a response if it is valid
+			if (numberID >= result.length)
+				response.send("Not enough elements in database")
+			else
+			{
+				collection.remove({"_id":result[numberID]._id},(err,result) =>
+				{
+				if(err)
+				{
+					response.send(result[numberID]);
+					throw err;
+				}		
+				response.send('user deleted');		
+				});
+			}
+		});
 	});
 });
+
+	//this last line is required by zeit since we are stateless
+module.exports = app;
