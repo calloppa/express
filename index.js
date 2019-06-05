@@ -13,8 +13,8 @@ app.get("/hi",(request,response) => {
 	response.send("Hello world!");
 });
 
-const CONNECTION_URL = "mongodb+srv://calloppa:hyt19980519***@tiffanylab10-awd1d.mongodb.net/test?retryWrites=true";
-const DATABASE_NAME = "TiffanyLab10" ;
+const CONNECTION_URL = "mongodb+srv://calloppa:hyt19980519***@tiffanylab10-awd1d.mongodb.net/test?retryWrites=true&w=majority";
+const DATABASE_NAME = "TiffanyLab10";
 //save a new note
 app.post("/notes", (request, response) => {
 
