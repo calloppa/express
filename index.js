@@ -58,6 +58,13 @@ app.get("/notes", (request, response) => {
 	}); 
 });
 
+app.get('/test', (request, response) => {
+
+	MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
+		response.send(client);
+	});
+});
+
 //update a note
 app.put('/notes/:id',(request,response) => {
 	
