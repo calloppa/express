@@ -23,8 +23,8 @@ app.post("/notes", (request, response) => {
 					response.send(error);
 					throw error;
 		}
-		database = client.db(DATABASE_NAME);
-		collection = database.collection("Notes");
+		var database = client.db(DATABASE_NAME);
+		var collection = database.collection("Notes");
 
 		collection.insert(request.body,(error,result) => {
 			if(error) {
@@ -36,7 +36,7 @@ app.post("/notes", (request, response) => {
 });  
 //we will use the following template for notes: '{"name":"", " body":""}'
 
-
+//hello
 
 //get all notes
 app.get("/notes", (request, response) => {
