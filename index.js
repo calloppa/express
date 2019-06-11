@@ -46,8 +46,8 @@ app.get("/notes", (request, response) => {
 				response.send(error);
 				throw error;
 	}
-	database = client.db(DATABASE_NAME);
-	collection = database.collection("Notes");
+	var database = client.db(DATABASE_NAME);
+	var collection = database.collection("Notes");
 
 	collection.find({}).toArray((error,result) => {
 	if(error){
