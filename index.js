@@ -61,7 +61,8 @@ app.get("/notes", (request, response) => {
 app.get('/test', (request, response) => {
 
 	MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
-		response.send(client);
+		var database = client.db(DATABASE_NAME);
+		response.send(database);
 	});
 });
 
