@@ -14,7 +14,7 @@ app.get("/hi",(request,response) => {
 });
 
 const CONNECTION_URL = "mongodb+srv://calloppa:hyt19980519***@tiffanylab10-awd1d.mongodb.net/test?retryWrites=true&w=majority";
-const DATABASE_NAME = "TiffanyLab10";
+const DATABASE_NAME = "Lab10";
 //save a new note
 app.post("/notes", (request, response) => {
 
